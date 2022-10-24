@@ -1,4 +1,4 @@
-name: CI Section 24
+name: ini ci golang
 on:
   pull_request:
     branches:
@@ -6,13 +6,13 @@ on:
 jobs:
   testing:
     runs-on: ubuntu-latest
-    name: unitest
+    name: "ini unitest"
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v3
         with:
           go-version: 1.17
       - name: run unit test
-        uses: go test -v ./...
+        run: go test -v ./...
       - name: run linting
         uses: golangci/golangci-lint-action@v3
