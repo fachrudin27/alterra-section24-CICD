@@ -24,5 +24,5 @@ func main() {
 
 	port := os.Getenv("START")
 
-	e.Start(port)
+	_ = e.Start(port)
 }

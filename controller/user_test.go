@@ -6,10 +6,12 @@ import (
 	// "github.com/stretchr/testify/assert"
 	"bytes"
 	"encoding/json"
-	"github.com/stretchr/testify/suite"
 	"net/http"
 	"net/http/httptest"
 	"praktikum/dto"
+
+	"github.com/stretchr/testify/suite"
+
 	// "problem1/model"
 	mocks "praktikum/usecase/mock"
 	"testing"
@@ -117,7 +119,7 @@ func (s *suiteUsers) TestCreateUser() {
 
 			if v.HasReturnBody {
 				var resp map[string]dto.CreateUserRequest
-				json.NewDecoder(w.Result().Body).Decode(&resp)
+				_ = json.NewDecoder(w.Result().Body).Decode(&resp)
 
 				s.Equal(v.ExpextedBody.Email, resp["result"].Email)
 			}
@@ -175,7 +177,7 @@ func (s *suiteUsers) TestLoginUser() {
 
 			if v.HasReturnBody {
 				var resp map[string]dto.UserJWT
-				json.NewDecoder(w.Result().Body).Decode(&resp)
+				_ = json.NewDecoder(w.Result().Body).Decode(&resp)
 
 				s.Equal(v.ExpextedBody.Email, resp["result"].Email)
 			}

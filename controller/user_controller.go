@@ -52,7 +52,7 @@ func (u *userController) CreateUser(c echo.Context) error {
 func (u *userController) LoginUser(c echo.Context) error {
 	// user := model.User{}
 	var payloads dto.CreateUserRequest
-	c.Bind(&payloads)
+	_ = c.Bind(&payloads)
 
 	res, err := u.useCase.Login(payloads)
 	if err != nil {
