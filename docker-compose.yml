@@ -1,0 +1,23 @@
+version: '2.1'
+
+services:
+  dbmysql:
+    image: mysql:latest
+    container_name: dbmysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=alta
+      - MYSQL_DATABASE=alta_section19
+    healthcheck:
+      test: ["CMD", "mysql", "-u", "root", "-palta", "-e", "show schemas"]
+      interval: 5s
+
+  app-clean-alta:
+    image: fachrudin/app-cleancode:1.4
+    ports:
+      - 8000:8000
+    environment:
+      - DB_ADDRESS=dbmysql:3306
+    depends_on:
+      dbmysql:
+        condition: service_healthy
+
